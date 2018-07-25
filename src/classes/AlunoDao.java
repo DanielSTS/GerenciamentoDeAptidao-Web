@@ -38,4 +38,16 @@ public class AlunoDao	{
 			}
 	}
 	
+	public	void	remove(Aluno aluno) {
+		try	{
+						PreparedStatement	stmt	=	connection
+														.prepareStatement("delete	from	alunos	where	matricula=?");
+						stmt.setInt(1,	aluno.getMatricula());
+						stmt.execute();
+						stmt.close();
+		}	catch	(SQLException	e)	{
+						throw new	RuntimeException(e);
+			}	
+	}
+	
 }

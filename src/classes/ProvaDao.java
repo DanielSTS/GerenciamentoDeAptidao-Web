@@ -28,14 +28,24 @@ public class ProvaDao	{
 						stmt.setInt(1,prova.getNumero());
 						stmt.setString(2,prova.getAssunto());
 					
-					
-					
-						//	executa
+					    //	executa
 						stmt.execute();
 						stmt.close();
 		}	catch	(SQLException	e)	{
 						throw new	RuntimeException(e);
 			}
+	}
+	
+	public	void	remove(Prova prova) {
+		try	{
+						PreparedStatement	stmt	=	connection
+														.prepareStatement("delete	from	alunos	where	numero=?");
+						stmt.setInt(1,	prova.getNumero());
+						stmt.execute();
+						stmt.close();
+		}	catch	(SQLException	e)	{
+						throw new	RuntimeException(e);
+			}	
 	}
 	
 }

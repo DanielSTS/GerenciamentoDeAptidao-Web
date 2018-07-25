@@ -1,11 +1,13 @@
-create database ProjetoBD;
+/*create database ProjetoBD;*/
 
 create table ProjetoBD.professor (matricula integer primary key,
 						email varchar(100),
                         idade integer,
                         nome varchar(100),
                         areadeformacao varchar(100),
-                        sexo varchar(100));
+                        titulacao varchar(100),
+                        sexo varchar(100),
+                        senha varchar(100));
 			
 
 create table ProjetoBD.disciplina (codigo integer  primary key,
@@ -40,6 +42,4 @@ create table ProjetoBD.prova_aluno (codigo_p integer,
                         foreign key (codigo_p) references ProjetoBD.prova(numero),
                         foreign key (codigo_a) references ProjetoBD.aluno(matricula));
                         
-                        
-                        
-                        
+

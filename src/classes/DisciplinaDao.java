@@ -37,4 +37,16 @@ public class DisciplinaDao	{
 			}
 	}
 	
+	public	void	remove(Disciplina disciplina) {
+		try	{
+						PreparedStatement	stmt	=	connection
+														.prepareStatement("delete	from	alunos	where	codigo=?");
+						stmt.setInt(1,disciplina.getCodigo());
+						stmt.execute();
+						stmt.close();
+		}	catch	(SQLException	e)	{
+						throw new	RuntimeException(e);
+			}	
+	}
+	
 }

@@ -39,4 +39,16 @@ public class AulaDao	{
 			}
 	}
 	
+	public	void	remove(Aula aula) {
+		try	{
+						PreparedStatement	stmt	=	connection
+														.prepareStatement("delete	from	alunos	where	numero=?");
+						stmt.setInt(1,	aula.getNumero());
+						stmt.execute();
+						stmt.close();
+		}	catch	(SQLException	e)	{
+						throw new	RuntimeException(e);
+			}	
+	}
+	
 }
