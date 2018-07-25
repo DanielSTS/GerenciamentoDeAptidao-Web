@@ -1,11 +1,8 @@
 package classes;
 
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
 public class ProfessorDao	{
@@ -19,7 +16,7 @@ public class ProfessorDao	{
 	
 	public	void	adiciona(Professor	professor) {
 		String	sql	=	"insert	into	professor	"	+
-										"(nome,email,matricula,idade,titulacao,sexo,areaDeFormacao,senha)"	+
+										"(nome,email,matricula,dataNascimento,titulacao,sexo,areaDeFormacao,senha)"	+
 										"	values	(?,?,?,?,?,?,?,?)";
 		try	{
 						//	prepared	statement	para	inserção
@@ -28,7 +25,7 @@ public class ProfessorDao	{
 						stmt.setString(1,professor.getNome());
 						stmt.setString(2,professor.getEmail());
 						stmt.setInt(3,professor.getMatricula());
-						stmt.setInt(4,professor.getIdade());
+						stmt.setString(4,professor.getDataNascimento());
 						stmt.setString(5,professor.getTitulacao());
 						stmt.setString(6,professor.getSexo());
 						stmt.setString(7,professor.getAreaDeFormacao());

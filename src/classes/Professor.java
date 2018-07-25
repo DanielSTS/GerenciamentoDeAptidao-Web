@@ -5,7 +5,7 @@ public class Professor {
 	private String nome;
 	private String email;
 	private int  matricula;
-	private int idade;
+	private String dataNascimento;
 	private String titulacao;
 	private String sexo;
 	private String areaDeFormacao;
@@ -36,11 +36,11 @@ public class Professor {
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
-	public int getIdade() {
-		return idade;
+	public String getDataNascimento() {
+		return dataNascimento;
 	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	public String getTitulacao() {
 		return titulacao;

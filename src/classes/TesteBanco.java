@@ -9,11 +9,11 @@ public class TesteBanco {
 		professor.setNome("Caelum");
 		professor.setEmail("professor@caelum.com.br");
 		professor.setAreaDeFormacao("area");
-		professor.setIdade(13);
+		professor.setDataNascimento("13/08/1998");
 		professor.setSenha("ojdhdd");
 		professor.setSexo("masculino");
 		professor.setTitulacao("mestre");
-		professor.setMatricula(84434);
+		professor.setMatricula(8494324);
 		
 		//	grave	nessa	conexão!!!
 		ProfessorDao dao	=	new	ProfessorDao();
