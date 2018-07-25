@@ -5,6 +5,7 @@ public class Aula {
 	private int numero;
 	private String assunto;
 	private String material;
+	
 	public int getNumero() {
 		return numero;
 	}

@@ -9,8 +9,15 @@ public class Professor {
 	private String titulacao;
 	private String sexo;
 	private String areaDeFormacao;
+	private String senha;
 	
 	
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	public String getNome() {
 		return nome;
 	}

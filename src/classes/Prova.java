@@ -18,6 +18,4 @@ public class Prova {
 		this.assunto = assunto;
 	}
 	
-	
-
 }
