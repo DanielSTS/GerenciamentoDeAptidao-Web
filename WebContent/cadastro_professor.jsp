@@ -14,7 +14,7 @@
 	
 		<h1>Cadastro de Usuário</h1>
 		<hr	/>
-		<form	action="home.jsp" method="Post">
+		<form	action="login.jsp" method="Post">
 			Nome:	<input	type="text" name="nome" id="nome"	/><br	/>
 			E-mail:	<input	type="text" name="email"	/><br	/>
 			Senha:	<input	type="text" name="endereco"	/><br	/>

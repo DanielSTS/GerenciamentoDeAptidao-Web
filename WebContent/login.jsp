@@ -29,8 +29,9 @@
 	
 	%>
 	
-	<form action="login.jsp" method="post">
-		<center>
+	
+	<center>
+		<form action="login.jsp" method="post">
 		<h2>Login</h2>
 			<div id="campos">
 			
@@ -62,6 +63,6 @@
 					<input type="submit" value="Entrar"/>
 		</form>
 			</div>
-		</center>
+	</center>
 	</body>
 </html>

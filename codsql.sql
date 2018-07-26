@@ -42,4 +42,10 @@ create table ProjetoBD.prova_aluno (codigo_p integer,
                         foreign key (codigo_p) references ProjetoBD.prova(numero),
                         foreign key (codigo_a) references ProjetoBD.aluno(matricula));
 		
-select * from ProjetoBD.professor
+select * from ProjetoBD.disciplina;
+
+insert into ProjetoBD.disciplina VALUES (13,'matematica')
+
+
+
+

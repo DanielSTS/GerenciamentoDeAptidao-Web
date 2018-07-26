@@ -6,17 +6,20 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 	</head>
-	<body>
-		
-	<center>
-		<div id="campos">
-			<h3>Nome: <input type="text" name="usuario.usuario"/><br/><br/></h3>
-			<h3>Código: <input type="text" name="usuario.senha"/><br/><br/></h3>
-		</div>		
-		
-		<div id ="botoes">
-			<input type="submit" value ="Salvar" name="btnSalvar"/>
-		</div>	
-	</center>
-	</body>
+<body>
+	<form	action="./CadastraDisciplina" method="Post">	
+		<center>
+			<div id="campos">
+				<h3>Nome: <input type="password" name="txtNome" id="txtNome"/><br/><br/></h3>
+				<h3>Código: <input type="password" name="txtCodigo" id="txtCodigo"/><br/><br/></h3>
+			</div>		
+			
+			<div id ="botoes">
+				<input type="submit" value ="Salvar" name="btnSalvar"/>
+				<input type="submit" value ="Editar" name=" btnEditar"/>
+				<input type="submit" value ="Excluir" name="btnExcluir"/>
+			</div>	
+		</center>
+	</form>
+</body>
 </html>
