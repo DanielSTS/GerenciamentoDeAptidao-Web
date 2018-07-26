@@ -13,7 +13,7 @@ public class TesteBanco {
 		professor.setSenha("ojdhdd");
 		professor.setSexo("masculino");
 		professor.setTitulacao("mestre");
-		professor.setMatricula(8494324);
+		professor.setMatricula(12);
 		
 		//	grave	nessa	conexão!!!
 		ProfessorDao dao	=	new	ProfessorDao();

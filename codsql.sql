@@ -41,4 +41,5 @@ create table ProjetoBD.prova_aluno (codigo_p integer,
                         nota double precision,
                         foreign key (codigo_p) references ProjetoBD.prova(numero),
                         foreign key (codigo_a) references ProjetoBD.aluno(matricula));
-                        
+		
+select * from ProjetoBD.professor

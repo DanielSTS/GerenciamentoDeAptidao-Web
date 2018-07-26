@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 		<h1>Cadastro de Usuário</h1>
 		<hr	/>
 		<form	action="adicionaContato">
