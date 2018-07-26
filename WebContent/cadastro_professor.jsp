@@ -7,14 +7,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@	page import="classes.*,
+	java.sql.*,javax.*"%>
+
+	
 	
 		<h1>Cadastro de Usuário</h1>
 		<hr	/>
-		<form	action="adicionaContato">
-			Nome:	<input	type="text" name="nome"	/><br	/>
+		<form	action="home.jsp" method="Post">
+			Nome:	<input	type="text" name="nome" id="nome"	/><br	/>
 			E-mail:	<input	type="text" name="email"	/><br	/>
 			Senha:	<input	type="text" name="endereco"	/><br	/>
 			DataNascimento: <input	type="text" name="dataNascimento"	/><br	/>
+			
+			<%
+			System.out.println(request.getParameter("nome") + "24");
+			%>
 						
 			<input	type="submit" value="Gravar"	/>
 		</form>

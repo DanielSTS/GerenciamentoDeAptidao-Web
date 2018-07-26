@@ -7,12 +7,16 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<form action="home.jsp" method="post">
-					Nome: <input type="text" name="usuario.usuario"/>
-					<br/><br/>
-					Código: <input type="text" name="usuario.senha"/>
-					<br/><br/>
-					<input type="submit" value="Logar-se"/>
-		</form>
+		
+	<center>
+		<div id="campos">
+			<h3>Nome: <input type="text" name="usuario.usuario"/><br/><br/></h3>
+			<h3>Código: <input type="text" name="usuario.senha"/><br/><br/></h3>
+		</div>		
+		
+		<div id ="botoes">
+			<input type="submit" value ="Salvar" name="btnSalvar"/>
+		</div>	
+	</center>
 	</body>
 </html>

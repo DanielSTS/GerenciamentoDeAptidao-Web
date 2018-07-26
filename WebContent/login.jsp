@@ -3,29 +3,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-	<%@	page import="classes.*" %>
-
-	<% 
-	 
-	ContatoDao cd = new ContatoDao();
 	
-	%>
+
+	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>LOGIN</title>
-		<link rel="stylesheet" href="/css/style.css">
+		
 	</head>
 	<body style="background-color: buttonface">
 	
+	<%@	page import="classes.*,
+	java.sql.*,javax.*"%>
+	<% 
+	
+
+	ConnectionFactory conexao = new ConnectionFactory();
+	Connection con = conexao.getConnection();
+	
+	if (conexao != null){
+		System.out.println("conectado");
+	}else{
+		System.out.println("Não conectado");
+
+	}
+	
+	%>
+	
+	<form action="login.jsp" method="post">
 		<center>
+		<h2>Login</h2>
 			<div id="campos">
-			<h2>Login</h2>
-				<form action="home.jsp" method="post">
-					Login: <input type="text" name="usuario.usuario"/>
-					<br/><br/>
-					Senha: <input type="password" name="usuario.senha"/>
-					<br/><br/>
-					<input type="submit" value="Logar-se"/>
-				</form>
+			
+					Matrícula: <input type="text" name="textLog" value="" id="txtLog"/><br/><br/>
+					
+					Senha: <input type="password" name="txtSenha" value="" id="txtSenha"/><br/><br/>
+					
+					<%if (con!= null){
+						
+						
+						if (request.getParameter("txtSenha")!= null) {
+							System.out.println(request.getParameter("txtSenha"));							
+				Statement st ;
+				ResultSet rs;
+				st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
+				rs = st.executeQuery("select * from professor where senha='" +request.getParameter("txtSenha")+"' and senha='"+request.getParameter("txtSenha")+"'");
+				
+		
+						if(rs.next()){
+								
+								response.sendRedirect("home.jsp");
+							}
+						
+						}
+					}else{
+						out.println("Não foi possível logar!!");
+					}
+					%>
+					<input type="submit" value="Entrar"/>
+		</form>
 			</div>
 		</center>
 	</body>

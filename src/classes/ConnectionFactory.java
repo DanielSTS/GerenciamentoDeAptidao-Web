@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import com.mysql.jdbc.Driver;
+import java.sql.Statement;
+import java.sql.*;
 
 public class ConnectionFactory {
 
@@ -11,10 +13,10 @@ public class ConnectionFactory {
 		try	{
 			
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-				return	DriverManager.getConnection("jdbc:mysql://localhost/ProjetoBD","root",	"root123");
+				return	DriverManager.getConnection("jdbc:mysql://localhost/ProjetoBD","root","root123");
 		}	catch	(SQLException	e)	{
 					e.printStackTrace();
-			throw new	RuntimeException(e);
+						throw new	RuntimeException(e);
 		}	
 
 	}
