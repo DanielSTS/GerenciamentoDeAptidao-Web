@@ -48,5 +48,13 @@
 			</div>
 		</center>
 		</form>
+		
+		</center>
+		</form>
+		
+		<form action="opcoes_disciplina.jsp" method="Post" >	
+		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		
+		</form>
 	</body>
 </html>
