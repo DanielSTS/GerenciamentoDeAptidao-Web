@@ -35,7 +35,7 @@
 		<h2>Login</h2>
 			<div id="campos">
 			
-					Matrícula: <input type="text" name="textLog" value="" id="txtLog"/><br/><br/>
+					Matrícula: <input type="text" name="txtLog" value="" id="txtLog"/><br/><br/>
 					
 					Senha: <input type="password" name="txtSenha" value="" id="txtSenha"/><br/><br/>
 					
@@ -47,7 +47,7 @@
 				Statement st ;
 				ResultSet rs;
 				st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.TYPE_FORWARD_ONLY);
-				rs = st.executeQuery("select * from professor where senha='" +request.getParameter("txtSenha")+"' and senha='"+request.getParameter("txtSenha")+"'");
+				rs = st.executeQuery("select * from professor where matricula='" +request.getParameter("txtLog")+"' and senha='"+request.getParameter("txtSenha")+"'");
 				
 		
 						if(rs.next()){

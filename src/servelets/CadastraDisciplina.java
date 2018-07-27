@@ -26,21 +26,28 @@ public class CadastraDisciplina extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,codigo;
+		String nome,codigo,matricula;
 		nome = request.getParameter("txtNome");
 		codigo = request.getParameter("txtCodigo");
+		matricula = request.getParameter("txtMatricula");
+		
+		
 		
 		try {
 			
 		resp = conexao.getConnection();
+		
 		if(resp != null) {
-			conexao.ExecutaSql("select * from disciplina where nome='"+nome+"'");
+			conexao.ExecutaSql("select * from disciplina where codigo='"+codigo+"'");
 			
 			
 			if(!conexao.resultset.first()) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome) values(?,?)");
-				pst.setString(1,codigo);
+				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome,matricula_professor) values(?,?,?)");
+				pst.setInt(1,Integer.parseInt(codigo));
 				pst.setString(2,nome);
+				pst.setInt(3,Integer.parseInt(matricula));
+
+				
 				pst.execute();
 				response.sendRedirect("sucesso_cadastro.jsp");
 			}else {

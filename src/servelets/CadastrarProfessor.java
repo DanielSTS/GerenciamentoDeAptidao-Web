@@ -30,7 +30,7 @@ public class CadastrarProfessor extends HttpServlet {
 		
 		String nome,email,matricula,dataNascimento,titulacao,areadeformacao,sexo,senha;
 		nome = request.getParameter("Nome");
-		email = request.getParameter("email");
+		email = request.getParameter("Email");
 		matricula = request.getParameter("Matricula");
 		dataNascimento = request.getParameter("DataDeNascimento");
 		titulacao = request.getParameter("Titulacao");
@@ -41,16 +41,22 @@ public class CadastrarProfessor extends HttpServlet {
 		
 		try {
 			
-		
+			resp = conexao.getConnection();
 		
 		if(resp != null) {
 			
-			resp = conexao.getConnection();
+			conexao.ExecutaSql("select * from professor where matricula='"+matricula+"'");
 			
 			if(!conexao.resultset.first()) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome) values(?,?)");
-				pst.setString(1,codigo);
-				pst.setString(2,nome);
+				PreparedStatement pst = resp.prepareStatement("insert into professor (matricula,email,datanascimento,nome,areadeformacao,titulacao,sexo,senha) values(?,?,?,?,?,?,?,?)");
+				pst.setString(4,nome);
+				pst.setString(2,email);
+				pst.setInt(1,Integer.parseInt(matricula));
+				pst.setString(3,dataNascimento);
+				pst.setString(6,titulacao);
+				pst.setString(5,areadeformacao);
+				pst.setString(7,sexo);
+				pst.setString(8,senha);
 				pst.execute();
 				response.sendRedirect("sucesso_cadastro.jsp");
 			}else {
@@ -67,11 +73,11 @@ public class CadastrarProfessor extends HttpServlet {
 		
 		PrintWriter	out	=	response.getWriter();
 		
-		//out.println("<html>");
-		//out.println("<body>");
-		//out.println("Primeira	servlet" +achaDisciplina);
-		//out.println("</body>");
-		//out.println("</html>");
+		/*out.println("<html>");
+		out.println("<body>");
+		out.println("Primeira	servlet" );
+		out.println("</body>");
+		out.println("</html>");*/
 	}
 	
        

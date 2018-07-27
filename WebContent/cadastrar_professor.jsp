@@ -7,24 +7,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<form	action=".\CadastraDisciplina" method="Post">	
+		<form	action="./CadastrarProfessor" method="Post">	
 		<center>
-			<div id="campos">
-				<h3>Nome: <input type="txt" name="txtNome" id="Nome"/></h3>
-				<h3>Matricula: <input type="txt" name="txtCodigo" id="Matricula"/></h3>
-				<h3>e-mail: <input type="txt" name="txtCodigo" id="Email"/></h3>
-				<h3>senha: <input type="password" name="txtCodigo" id="Senha"/></h3>
-				<h3>data de nascimento: <input type="txt" name="txtCodigo" id="DataDeNascimento"/></h3>
-				<h3>Titulação: <input type="txt" name="txtCodigo" id="Titulacao"/></h3>
-				<h3>Area de Formação: <input type="txt" name="txtCodigo" id="AreaDeFormacao"/></h3>
-				<h3>sexo: <input type="txt" name="txtCodigo" id="Sexo"/></h3>
-								
-			</div>		
 			
-			<div id ="botoes">
+				<h3>Nome: <input type="txt" name="Nome" id="Nome"/></h3>
+				<h3>Matricula: <input type="txt" name="Matricula" id="Matricula"/></h3>
+				<h3>e-mail: <input type="txt" name="Email" id="Email"/></h3>
+				
+				<h3>data de nascimento: <input type="txt" name="DataDeNascimento" id="DataDeNascimento"/></h3>
+				<h3>Titulação: <input type="txt" name="Titulacao" id="Titulacao"/></h3>
+				<h3>Area de Formação: <input type="txt" name="AreaDeFormacao" id="AreaDeFormacao"/></h3>
+				<h3>sexo: <input type="txt" name="Sexo" id="Sexo"/></h3>
+				
+				<h3>senha: <input type="password" name="Senha" id="Senha"/></h3>
+								
+				
+			
+			
 				<input type="submit" value ="Salvar" name="btnSalvar"/>
 				
-			</div>	
+			
 		</center>
 	</form>
 	</body>
