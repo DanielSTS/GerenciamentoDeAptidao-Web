@@ -49,7 +49,7 @@ public class CadastraDisciplina extends HttpServlet {
 
 				
 				pst.execute();
-				response.sendRedirect("sucesso_cadastro.jsp");
+				response.sendRedirect("opcoes_disciplina.jsp");
 			}else {
 				response.sendRedirect("falha_cadastro.jsp");
 			}

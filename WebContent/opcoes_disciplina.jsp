@@ -36,11 +36,24 @@
 			out.println("<td>"+ conexao.resultset.getInt("codigo")+"</td>");
 			out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
 			
+			
+			
+			out.println("<form action='dados_disciplina.jsp' method='Post' >");	
+			out.println("<td><input type='submit' value ='Ir' name='btnIr'/></td>");
+			
+			out.println("</form>");
+			
 			out.println("</tr>");
 				} while(conexao.resultset.next());
 				%>
 				</tr>
 		</table>
+		
+		<center>
+		<form action="home.jsp" method="Post" >	
+		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		</center>
+		</form>
 	
 </body>
 </html>
