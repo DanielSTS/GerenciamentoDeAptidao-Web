@@ -7,7 +7,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		 <a href="cadastro_professor.jsp" >Cadastre-se</a>
+		 <a href="cadastrar_professor.jsp" >Cadastre-se</a>
 		 <a href="login.jsp" >Login</a>
 	
 	</body>

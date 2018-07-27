@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import classes.ConnectionFactory;
 
-
-@WebServlet("/CadastraDisciplina")
-public class CadastraDisciplina extends HttpServlet {
+/**
+ * Servlet implementation class CadastrarProfessor
+ */
+@WebServlet("/CadastrarProfessor")
+public class CadastrarProfessor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+	
 	ConnectionFactory conexao = new ConnectionFactory();
 	Connection resp;
 	
@@ -26,16 +28,24 @@ public class CadastraDisciplina extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,codigo;
-		nome = request.getParameter("txtNome");
-		codigo = request.getParameter("txtCodigo");
+		String nome,email,matricula,dataNascimento,titulacao,areadeformacao,sexo,senha;
+		nome = request.getParameter("Nome");
+		email = request.getParameter("email");
+		matricula = request.getParameter("Matricula");
+		dataNascimento = request.getParameter("DataDeNascimento");
+		titulacao = request.getParameter("Titulacao");
+		areadeformacao = request.getParameter("AreaDeFormacao");
+		sexo = request.getParameter("Sexo");
+		senha = request.getParameter("Senha");
+		
 		
 		try {
 			
-		resp = conexao.getConnection();
+		
+		
 		if(resp != null) {
-			conexao.ExecutaSql("select * from disciplina where nome='"+nome+"'");
 			
+			resp = conexao.getConnection();
 			
 			if(!conexao.resultset.first()) {
 				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome) values(?,?)");
@@ -64,20 +74,22 @@ public class CadastraDisciplina extends HttpServlet {
 		//out.println("</html>");
 	}
 	
-	
-    
-    public CadastraDisciplina() {
+       
+   
+    public CadastrarProfessor() {
         super();
-        
+       
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
 

@@ -14,70 +14,79 @@ import javax.servlet.http.HttpServletResponse;
 
 import classes.ConnectionFactory;
 
-
-@WebServlet("/CadastraDisciplina")
-public class CadastraDisciplina extends HttpServlet {
+/**
+ * Servlet implementation class ExcluirDisciplina
+ */
+@WebServlet("/ExcluirDisciplina")
+public class ExcluirDisciplina extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+	
 	ConnectionFactory conexao = new ConnectionFactory();
 	Connection resp;
-	
+    
 	protected	void	service	(HttpServletRequest	request,
-					HttpServletResponse	response)
-					throws	ServletException,	IOException	{
+			HttpServletResponse	response)
+			throws	ServletException,	IOException	{
 		
-		String nome,codigo;
-		nome = request.getParameter("txtNome");
-		codigo = request.getParameter("txtCodigo");
+		String codigo = request.getParameter("txtCod");
 		
-		try {
-			
-		resp = conexao.getConnection();
-		if(resp != null) {
-			conexao.ExecutaSql("select * from disciplina where nome='"+nome+"'");
-			
-			
-			if(!conexao.resultset.first()) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome) values(?,?)");
-				pst.setString(1,codigo);
-				pst.setString(2,nome);
+		
+		
+		if(!codigo.equals("")) {
+			try {
+			resp = conexao.getConnection();
+
+			if(resp!= null) {
+				PreparedStatement pst;
+				pst = resp.prepareStatement("delete from disciplina where codigo =?");
+				pst.setInt(1,Integer.parseInt(codigo));
 				pst.execute();
-				response.sendRedirect("sucesso_cadastro.jsp");
-			}else {
-				response.sendRedirect("falha_cadastro.jsp");
+				response.sendRedirect("excluir_disciplina.jsp");
 			}
 			
-		}
-			} catch (SQLException e) {
-				
+			}catch (SQLException e) {
 				e.printStackTrace();
+			}
 			
-			
+		}else {
+			response.sendRedirect("falha_cadastro.jsp");
+
 		}
+		
+		
+		
+		
 		
 		PrintWriter	out	=	response.getWriter();
 		
 		//out.println("<html>");
 		//out.println("<body>");
-		//out.println("Primeira	servlet" +achaDisciplina);
+		out.println("Primeira	servlet");
 		//out.println("</body>");
 		//out.println("</html>");
-	}
+		}
 	
-	
-    
-    public CadastraDisciplina() {
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ExcluirDisciplina() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
 
-	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

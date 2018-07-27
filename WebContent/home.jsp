@@ -8,7 +8,9 @@
 	</head>
 	<body>
 		
-		  <a href="cadastro_disciplina.jsp" >Cadastro de disciplina</a>
+		  <a href="opcoes_disciplina.jsp" >Disciplinas</a>
+		
+		  
 		  
 		  	
 	</body>
