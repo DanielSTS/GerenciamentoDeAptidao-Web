@@ -12,16 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.util.StringUtils;
-
 import classes.ConnectionFactory;
 
 
-@WebServlet("/CadastraDisciplina")
-public class CadastraDisciplina extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-     
+@WebServlet("/AdicionarAula")
+
+public class AdicionarAula extends HttpServlet{
+private static final long serialVersionUID = 1L;
+    
 	ConnectionFactory conexao = new ConnectionFactory();
 	Connection resp;
 	
@@ -29,13 +27,11 @@ public class CadastraDisciplina extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,codigo;
-		nome = request.getParameter("txtNome");
-		codigo = request.getParameter("txtCodigo");
-		
-		String matricula = (String)request.getSession().getAttribute("matricula");
-		
-	
+		String assunto,numero,matricula_professor,codigo_d;
+		assunto = request.getParameter("txtAssunto");
+		numero = request.getParameter("txtNumero");
+		matricula_professor = request.getParameter("txtMatricula_Professor");
+		codigo_d = request.getParameter("txtCodigo_D");
 		
 		
 		
@@ -43,40 +39,43 @@ public class CadastraDisciplina extends HttpServlet {
 			
 		resp = conexao.getConnection();
 		
-		if(resp != null && StringUtils.isStrictlyNumeric(codigo) ) {
-			conexao.ExecutaSql("select * from disciplina where codigo='"+codigo+"'");
+		if(resp != null) {
+			conexao.ExecutaSql("select * from disciplina where numero='"+numero+"'");
 			
 			
-			if(!conexao.resultset.first() ) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome,matricula_professor) values(?,?,?)");
-				pst.setInt(1,Integer.parseInt(codigo));
-				pst.setString(2,nome);
-				pst.setInt(3,Integer.parseInt(matricula));
-
+			if(!conexao.resultset.first()) {
+				PreparedStatement pst = resp.prepareStatement("insert into disciplina (assunto,numero,matricula_professor,codigo_d) values(?,?,?,?)");
+				pst.setString(1,assunto);
+				pst.setInt(3,Integer.parseInt(numero));
+				pst.setInt(3,Integer.parseInt(matricula_professor));
+				pst.setInt(4,Integer.parseInt(codigo_d));
 				
 				pst.execute();
 				response.sendRedirect("opcoes_disciplina.jsp");
 			}else {
-				response.sendRedirect("falha_disciplina.jsp");
+				response.sendRedirect("falha_cadastro.jsp");
 			}
 			
-		}else {
-			response.sendRedirect("falha_disciplina.jsp");
 		}
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
-				
+			
+			
 		}
 		
 		PrintWriter	out	=	response.getWriter();
 		
-	
+		//out.println("<html>");
+		//out.println("<body>");
+		//out.println("Primeira	servlet" +achaDisciplina);
+		//out.println("</body>");
+		//out.println("</html>");
 	}
 	
 	
     
-    public CadastraDisciplina() {
+    public AdicionarAula() {
         super();
         
     }
@@ -90,5 +89,4 @@ public class CadastraDisciplina extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

@@ -52,15 +52,12 @@ public class EditarDisciplina extends HttpServlet {
 			}
 			
 		}else {
-			response.sendRedirect("falha_cadastro.jsp");
+			response.sendRedirect("editar_disciplina.jsp");
 
 		}
 		
 		
-		
-		
-	
-		}
+}
 	
        
    

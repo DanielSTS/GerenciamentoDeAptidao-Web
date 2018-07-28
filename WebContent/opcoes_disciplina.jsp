@@ -9,31 +9,38 @@
 </head>
 <body>
 
-<%@	page import="classes.*,servelets.*,
+<%@	page import="classes.*,
 	java.sql.*,javax.*"%>
 	
 <% String mat = (String) session.getAttribute("matricula"); 
    int matricula = Integer.parseInt(mat);	
 %>	
 
+
+
+
+
 	 <a href="cadastrar_disciplina.jsp" >Criar Disciplina</a>
 	 <a href="editar_disciplina.jsp" > EditarDisciplina</a>
 	 <a href="excluir_disciplina.jsp" >Excluir Disciplina</a>
-	 
+	
 	 
 	 
 	
-	<form action="sobre_disciplina.jsp" method="post">  
-	<input type="text" name="cod" id="cod" /><br/><br/>  
-	<input type="submit" value="sobre disciplina"/>"  
+	<form action="salva_cod.jsp" method="post">  
+	
+	<h3><br>Codigo Disciplina : <input type="text" name="cod" id="cod" /><br> </h3>
+	 
+	<br><input type="submit" value="sobre disciplina"/> 
+	
 	</form>  
 
-	
+
 	
 	 
 	 <table border=1> 
 			<tr>
-				<td>Código</td>
+				<br><br> <td>Código</td>
 				<td>Nome</td>
 	
 				
@@ -69,6 +76,7 @@
 		<center>
 		<form action="home.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar" />
+	
 		</center>
 		</form>
 	

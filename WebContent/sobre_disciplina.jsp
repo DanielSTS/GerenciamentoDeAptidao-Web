@@ -9,12 +9,42 @@
 <body>
 
 <%@	page import="classes.*,servelets.*,
-	java.sql.*,javax.*"%>
+	java.sql.*,javax.*,com.mysql.cj.util.StringUtils"%>
 
-<% String teste = request.getParameter("cod"); 
-int codigo_disciplina = Integer.parseInt(teste);
+<% String mat = (String) session.getAttribute("matricula"); 
+   int matricula = Integer.parseInt(mat);	
+%>	
 
- out.println(codigo_disciplina); %>
+<% 
+
+
+
+String teste = (String) session.getAttribute("codigo");
+
+int codigo_disciplina = 0 ;
+
+if(StringUtils.isStrictlyNumeric(teste)){
+	
+ codigo_disciplina = Integer.parseInt(teste);
+
+ 
+ ConnectionFactory con = new ConnectionFactory();
+ con.getConnection();
+ con.ExecutaSql("select * from disciplina where disciplina.matricula_professor = '"+matricula+"'"+"and disciplina.codigo ='"+codigo_disciplina+"'");
+
+ if(!con.resultset.first()){
+
+ 	response.sendRedirect("opcoes_disciplina.jsp");
+ }
+}else{
+	response.sendRedirect("opcoes_disciplina.jsp");
+}
+
+ %>
+ 
+ 
+ 
+ 
 
 
 	 <table border=1> 
@@ -56,6 +86,7 @@ int codigo_disciplina = Integer.parseInt(teste);
 				<h3>Nome: <input type="txt" name="txtNome" id="txtNome"/><br/><br/></h3>
 				<h3>Curso: <input type="txt" name="txtCurso" id="txtCurso"/><br/><br/></h3>
 				<h3>Matricula Aluno: <input type="txt" name="txtMatricula" id="txtMatricula"/><br/><br/></h3>
+				<input type="hidden" name="codig" value="<%out.println(codigo_disciplina); %>" id="codig" />
 			</div>		
 			
 			<div id ="botoes">
@@ -77,14 +108,14 @@ int codigo_disciplina = Integer.parseInt(teste);
 			<% 
 			ConnectionFactory conexao_teste_prova = new ConnectionFactory();
 			conexao_teste_prova.getConnection();
-			conexao_teste_prova.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
+			conexao_teste_prova.ExecutaSql("select * from prova where prova.codigo_d = '"+codigo_disciplina+"'");
 			
 			
-			if(conexao_teste.resultset.first()){
+			if(conexao_teste_prova.resultset.first()){
 
 				ConnectionFactory conexao_prova = new ConnectionFactory();
 				Connection resp_prova = conexao_prova.getConnection();
-				conexao_prova.ExecutaSql("select assunto,numero from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_prova.ExecutaSql("select numero,assunto from prova where prova.codigo_d = '"+codigo_disciplina+"'");
 				conexao_prova.resultset.first();
 				
 				 do {
@@ -102,10 +133,11 @@ int codigo_disciplina = Integer.parseInt(teste);
 				</tr>
 		</table>
 		
+		
 		<form	action="./AdicionarProva" method="Post">	
 		
 			<div id="camposProva">
-				<h3>Número: <input type="txt" name="txtNumero" id="txtNumero"/><br/><br/></h3>
+				<h3>Número Prova: <input type="txt" name="txtNumero" id="txtNumero"/><br/><br/></h3>
 				<h3>Assunto: <input type="txt" name="txtAssunto" id="txtAssunto"/><br/><br/></h3>
 				
 			</div>		
@@ -116,6 +148,75 @@ int codigo_disciplina = Integer.parseInt(teste);
 			</div>	
 		
 	</form>
+		
+		
+		
+		<table border=1> 
+			<tr>
+			<br><br><td>Número</td>
+				<td>Assunto</td>
+				<td>Material</td>
+				
+				
+	
+				
+			</tr>
+			<% 
+			ConnectionFactory conexao_teste_aula = new ConnectionFactory();
+			conexao_teste_aula.getConnection();
+			conexao_teste_aula.ExecutaSql("select * from aula where aula.codigo_d = '"+codigo_disciplina+"'");
+			
+			
+			if(conexao_teste_aula.resultset.first()){
+
+				ConnectionFactory conexao_aula = new ConnectionFactory();
+				Connection resp_aula = conexao_aula.getConnection();
+				conexao_aula.ExecutaSql("select numero,assunto,material from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_aula.resultset.first();
+				
+				 do {
+				out.println("<tr>"); 
+				
+				out.println("<td>"+ conexao_aula.resultset.getInt("numero")+"</td>");
+				out.println("<td>"+ conexao_aula.resultset.getString("assunto")+"</td>");
+				out.println("<td>"+ conexao_aula.resultset.getString("material")+"</td>");
+				
+				
+				
+				
+				out.println("</tr>");
+					} while(conexao_aula.resultset.next());
+			}%>
+				</tr>
+		</table>
+		
+		
+		<form	action="./AdicionarAula" method="Post">	
+		
+			<div id="camposProva">
+				<h3>Número Aula: <input type="txt" name="txtNumeroA" id="txtNumeroA"/><br/><br/></h3>
+				<h3>Assunto: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
+				<h3>Material: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
+				
+			</div>		
+			
+			<div id ="botoesProva">
+				<input type="submit" value ="Salvar" name="btnSalvarProva"/>
+				
+			</div>	
+		
+	</form>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		<center>
 		<form action="opcoes_disciplina.jsp" method="Post" >	

@@ -41,6 +41,7 @@
 					
 				    <%session.setAttribute("matricula", request.getParameter("txtLog")); %>
 				    <%session.setAttribute("senha", request.getParameter("txtSenha"));%>
+				   
 				    
 					
 					<%if (con!= null){
@@ -70,6 +71,7 @@
 	</center>
 	<form action="index.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		
 		
 		</form>
 	

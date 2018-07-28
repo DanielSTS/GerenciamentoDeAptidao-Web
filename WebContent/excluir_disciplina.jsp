@@ -16,7 +16,7 @@
 %>	
 	
 <form	action="./ExcluirDisciplina" method="Post">	
-<center>
+
 	<h1>Excluir Disciplina</h1>
 	
 	<div id="Tabela">
@@ -58,15 +58,18 @@
 		<br><a></a><input type="submit" value ="Confirmar" name="btnConfirmar"/>
 		
 			</div>
-		</center>
+	
 		</form>
 		
-		</center>
+		<center>
+		
 		</form>
 		
 		<form action="opcoes_disciplina.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar"/>
 		
 		</form>
+		
+		</center>
 	</body>
 </html>

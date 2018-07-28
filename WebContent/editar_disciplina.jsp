@@ -15,7 +15,7 @@
 %>
 	
 <form	action="./EditarDisciplina" method="Post">	
-<center>
+
 	<h1>Editar Disciplina</h1>
 	
 	<div id="Tabela">
@@ -59,7 +59,7 @@
 		<br><a></a><input type="submit" value ="Confirmar" name="btnConfirmar"/>
 		
 			</div>
-		</center>
+	
 		</form>
 		<center>
 		<form action="opcoes_disciplina.jsp" method="Post" >	

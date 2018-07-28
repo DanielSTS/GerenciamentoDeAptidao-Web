@@ -7,11 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-<%session.setAttribute("codigo", request.getParameter("cod")); %>
-
-<%response.sendRedirect("sobre_disciplina.jsp"); %>
-
+<%@	page import="classes.*,servelets.*,
+	java.sql.*,javax.*"%>
+	
+	<% session.setAttribute("codigo", request.getParameter("cod"));%>
+	<% response.sendRedirect("sobre_disciplina.jsp"); 
+	//out.println(session.getAttribute("codigo"));%>
+	
+	
 </body>
 </html>

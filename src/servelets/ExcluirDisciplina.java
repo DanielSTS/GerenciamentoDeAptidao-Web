@@ -16,9 +16,7 @@ import com.mysql.cj.util.StringUtils;
 
 import classes.ConnectionFactory;
 
-/**
- * Servlet implementation class ExcluirDisciplina
- */
+
 @WebServlet("/ExcluirDisciplina")
 public class ExcluirDisciplina extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,8 +29,7 @@ public class ExcluirDisciplina extends HttpServlet {
 			throws	ServletException,	IOException	{
 		
 		String codigo = request.getParameter("txtCod");
-		
-		
+		String matricula = (String)request.getSession().getAttribute("matricula");
 		
 		if(!codigo.equals("") && StringUtils.isStrictlyNumeric(codigo)) {
 			try {
@@ -40,33 +37,23 @@ public class ExcluirDisciplina extends HttpServlet {
 
 			if(resp!= null) {
 				PreparedStatement pst;
-				pst = resp.prepareStatement("delete from disciplina where codigo =?");
+				pst = resp.prepareStatement("delete from disciplina where codigo =? and matricula_professor=?");
 				pst.setInt(1,Integer.parseInt(codigo));
+				pst.setInt(2,Integer.parseInt(matricula));
 				pst.execute();
 				response.sendRedirect("excluir_disciplina.jsp");
 			}
-			
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 			
 		}else {
-			response.sendRedirect("falha_cadastro.jsp");
+			response.sendRedirect("excluir_disciplina.jsp");
+			}
+		
+	}
+		
 
-		}
-		
-		
-		
-		
-		
-		PrintWriter	out	=	response.getWriter();
-		
-		//out.println("<html>");
-		//out.println("<body>");
-		//out.println("Primeira	servlet");
-		//out.println("</body>");
-		//out.println("</html>");
-		}
 	
     /**
      * @see HttpServlet#HttpServlet()
