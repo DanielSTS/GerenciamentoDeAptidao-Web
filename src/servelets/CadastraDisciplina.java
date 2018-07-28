@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.util.StringUtils;
+
 import classes.ConnectionFactory;
 
 
@@ -40,11 +42,11 @@ public class CadastraDisciplina extends HttpServlet {
 			
 		resp = conexao.getConnection();
 		
-		if(resp != null) {
+		if(resp != null && StringUtils.isStrictlyNumeric(codigo) ) {
 			conexao.ExecutaSql("select * from disciplina where codigo='"+codigo+"'");
 			
 			
-			if(!conexao.resultset.first()) {
+			if(!conexao.resultset.first() ) {
 				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome,matricula_professor) values(?,?,?)");
 				pst.setInt(1,Integer.parseInt(codigo));
 				pst.setString(2,nome);
@@ -57,21 +59,18 @@ public class CadastraDisciplina extends HttpServlet {
 				response.sendRedirect("falha_cadastro.jsp");
 			}
 			
+		}else {
+			response.sendRedirect("falha_cadastro.jsp");
 		}
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
-			
-			
+				
 		}
 		
 		PrintWriter	out	=	response.getWriter();
 		
-		//out.println("<html>");
-		//out.println("<body>");
-		//out.println("Primeira	servlet" +achaDisciplina);
-		//out.println("</body>");
-		//out.println("</html>");
+	
 	}
 	
 	

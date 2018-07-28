@@ -30,21 +30,32 @@
 			</tr>
 			
 			<%
+			ConnectionFactory conexao_teste = new ConnectionFactory();
+			conexao_teste.getConnection();
+			conexao_teste.ExecutaSql("select * from disciplina where matricula_professor='"+matricula+"'");
+			
+			if(conexao_teste.resultset.first()){
 			ConnectionFactory conexao = new ConnectionFactory();
 			Connection resp = conexao.getConnection();
 			conexao.ExecutaSql("select * from disciplina where matricula_professor='"+matricula+"'");
 			conexao.resultset.first();
 			
-			
-			
+
 			 do {
 			out.println("<tr>"); 
 			out.println("<td>"+ conexao.resultset.getInt("codigo")+"</td>");
 			out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
+		
+			
+			
+			out.println("<form action='dados_disciplina.jsp' method='Post' >");	
+			out.println("<td><input type='submit' value ='Ir' name='btnIr' /></td>");
+			
+			out.println("</form>");
 			
 			out.println("</tr>");
 				} while(conexao.resultset.next());
-				%>
+				}%>
 				</tr>
 		</table>
 		<br><a></a><input type="submit" value ="Confirmar" name="btnConfirmar"/>

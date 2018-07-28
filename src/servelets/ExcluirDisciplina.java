@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.util.StringUtils;
+
 import classes.ConnectionFactory;
 
 /**
@@ -32,7 +34,7 @@ public class ExcluirDisciplina extends HttpServlet {
 		
 		
 		
-		if(!codigo.equals("")) {
+		if(!codigo.equals("") && StringUtils.isStrictlyNumeric(codigo)) {
 			try {
 			resp = conexao.getConnection();
 

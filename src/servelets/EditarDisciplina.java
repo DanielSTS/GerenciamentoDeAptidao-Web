@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.util.StringUtils;
+
 import classes.ConnectionFactory;
 
 
@@ -31,7 +33,7 @@ public class EditarDisciplina extends HttpServlet {
 		
 		
 		
-		if(codigo != null && !nome.equals("")) {
+		if(codigo != null && !nome.equals("") && StringUtils.isStrictlyNumeric(codigo)) {
 			try {
 			resp = conexao.getConnection();
 

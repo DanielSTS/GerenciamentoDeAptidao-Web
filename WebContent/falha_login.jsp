@@ -8,8 +8,9 @@
 </head>
 <body>
 <center>
-	<h1> Falha na OPeraçao</h1>
-	 <a href="opcoes_disciplina.jsp" >Retornar ao menu disciplina</a>
+	<h1> O cadastro falhou</h1>
+	 <a href="index.jsp" >Retornar a página principal</a>
+	 
 </center>
 </body>
 </html>

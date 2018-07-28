@@ -1,4 +1,5 @@
 create database ProjetoBD;
+use ProjetoBD
 
 create table ProjetoBD.professor (matricula integer primary key,
 						email varchar(100),
@@ -54,8 +55,13 @@ select * from ProjetoBD.professor_disciplina
 insert into ProjetoBD.aluno VALUES (13,'matematica','teste')
 
 insert into ProjetoBD.prova VALUES ('matematica',3,2016,2424)
-
+insert into ProjetoBD.professor_disciplina values (2016,34);
 
 alter table ProjetoBD.disciplina add matricula_professor integer
 
-select * from aluno,aluno_disciplina
+select al.* from ProjetoBD.aluno al,ProjetoBD.aluno_disciplina ad where al.matricula = ad.codigo_a
+select di.* from ProjetoBD.disciplina di,ProjetoBD.professor pr,ProjetoBD.professor_disciplina pd where pr.matricula = pd.codigo_p = 2016 
+
+select * from ProjetoBD.professor_disciplina
+
+

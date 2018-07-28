@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.util.StringUtils;
+
 import classes.ConnectionFactory;
 
 /**
@@ -43,7 +45,7 @@ public class CadastrarProfessor extends HttpServlet {
 			
 			resp = conexao.getConnection();
 		
-		if(resp != null) {
+		if(resp != null &&  StringUtils.isStrictlyNumeric(matricula)) {
 			
 			conexao.ExecutaSql("select * from professor where matricula='"+matricula+"'");
 			
@@ -60,9 +62,15 @@ public class CadastrarProfessor extends HttpServlet {
 				pst.execute();
 				response.sendRedirect("login.jsp");
 			}else {
-				response.sendRedirect("falha_cadastro.jsp");
+				
+				
+				response.sendRedirect("falha_login.jsp");
 			}
 			
+		}else {
+			
+			
+			response.sendRedirect("falha_login.jsp");
 		}
 			} catch (SQLException e) {
 				
@@ -71,7 +79,7 @@ public class CadastrarProfessor extends HttpServlet {
 			
 		}
 		
-		PrintWriter	out	=	response.getWriter();
+		//PrintWriter	out	=	response.getWriter();
 		
 		/*out.println("<html>");
 		out.println("<body>");

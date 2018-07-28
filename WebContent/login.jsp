@@ -68,5 +68,10 @@
 		</form>
 			</div>
 	</center>
+	<form action="index.jsp" method="Post" >	
+		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		
+		</form>
+	
 	</body>
 </html>

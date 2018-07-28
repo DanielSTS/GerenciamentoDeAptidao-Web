@@ -29,6 +29,11 @@
 			
 		</center>
 	</form>
+	
+	<form action="index.jsp" method="Post" >	
+		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		
+		</form>
 	</body>
 </html>
 
