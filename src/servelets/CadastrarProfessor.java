@@ -58,7 +58,7 @@ public class CadastrarProfessor extends HttpServlet {
 				pst.setString(7,sexo);
 				pst.setString(8,senha);
 				pst.execute();
-				response.sendRedirect("sucesso_cadastro.jsp");
+				response.sendRedirect("login.jsp");
 			}else {
 				response.sendRedirect("falha_cadastro.jsp");
 			}

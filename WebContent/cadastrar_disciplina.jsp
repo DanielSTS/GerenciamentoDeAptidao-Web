@@ -12,7 +12,6 @@
 			<div id="campos">
 				<h3>Nome: <input type="txt" name="txtNome" id="txtNome"/><br/><br/></h3>
 				<h3>Código: <input type="txt" name="txtCodigo" id="txtCodigo"/><br/><br/></h3>
-				<h3>Matricula Professor: <input type="txt" name="txtMatricula" id="txtMatricula"/><br/><br/></h3>
 			</div>		
 			
 			<div id ="botoes">

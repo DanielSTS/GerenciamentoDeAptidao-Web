@@ -9,6 +9,8 @@
 	<body>
 		
 		  <a href="opcoes_disciplina.jsp" >Disciplinas</a>
+		    <a href="deslogar.jsp" >Deslogar</a>
+		 
 		
 		  
 		  

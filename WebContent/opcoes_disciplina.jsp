@@ -10,6 +10,10 @@
 
 <%@	page import="classes.*,servelets.*,
 	java.sql.*,javax.*"%>
+	
+<% String mat = (String) session.getAttribute("matricula"); 
+   int matricula = Integer.parseInt(mat);	
+%>	
 
 	 <a href="cadastrar_disciplina.jsp" >Criar Disciplina</a>
 	 <a href="editar_disciplina.jsp" > EditarDisciplina</a>
@@ -26,7 +30,7 @@
 			<%
 			ConnectionFactory conexao = new ConnectionFactory();
 			Connection resp = conexao.getConnection();
-			conexao.ExecutaSql("select * from disciplina,professor where disciplina.matricula_professor= professor.matricula order by codigo" );
+			conexao.ExecutaSql("select * from disciplina where matricula_professor='"+matricula+"'");
 			conexao.resultset.first();
 			
 			
@@ -38,8 +42,11 @@
 			
 			
 			
+			 session.setAttribute("codigo_disciplina","pinta"); 
+			
+			
 			out.println("<form action='dados_disciplina.jsp' method='Post' >");	
-			out.println("<td><input type='submit' value ='Ir' name='btnIr'/></td>");
+			out.println("<td><input type='submit' value ='Ir' name='btnIr' /></td>");
 			
 			out.println("</form>");
 			
@@ -48,10 +55,9 @@
 				%>
 				</tr>
 		</table>
-		
 		<center>
 		<form action="home.jsp" method="Post" >	
-		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		<input type="button" value ="Voltar" name="btnVoltar" />
 		</center>
 		</form>
 	

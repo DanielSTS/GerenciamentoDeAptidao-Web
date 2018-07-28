@@ -39,6 +39,10 @@
 					
 					Senha: <input type="password" name="txtSenha" value="" id="txtSenha"/><br/><br/>
 					
+				    <%session.setAttribute("matricula", request.getParameter("txtLog")); %>
+				    <%session.setAttribute("senha", request.getParameter("txtSenha"));%>
+				    
+					
 					<%if (con!= null){
 						
 						

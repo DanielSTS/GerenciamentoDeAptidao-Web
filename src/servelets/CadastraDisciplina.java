@@ -17,6 +17,7 @@ import classes.ConnectionFactory;
 
 @WebServlet("/CadastraDisciplina")
 public class CadastraDisciplina extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
      
 	ConnectionFactory conexao = new ConnectionFactory();
@@ -26,10 +27,12 @@ public class CadastraDisciplina extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,codigo,matricula;
+		String nome,codigo;
 		nome = request.getParameter("txtNome");
 		codigo = request.getParameter("txtCodigo");
-		matricula = request.getParameter("txtMatricula");
+		
+		String matricula = (String)request.getSession().getAttribute("matricula");
+		
 		
 		
 		

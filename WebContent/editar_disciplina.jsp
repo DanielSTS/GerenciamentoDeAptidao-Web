@@ -9,6 +9,10 @@
 <body>
 <%@	page import="classes.*,servelets.*,
 	java.sql.*,javax.*"%>
+
+<% String mat = (String) session.getAttribute("matricula"); 
+   int matricula = Integer.parseInt(mat);	
+%>
 	
 <form	action="./EditarDisciplina" method="Post">	
 <center>
@@ -29,7 +33,7 @@
 			<%
 			ConnectionFactory conexao = new ConnectionFactory();
 			Connection resp = conexao.getConnection();
-			conexao.ExecutaSql("select * from disciplina order by codigo" );
+			conexao.ExecutaSql("select * from disciplina where matricula_professor='"+matricula+"'" );
 			conexao.resultset.first();
 			
 			

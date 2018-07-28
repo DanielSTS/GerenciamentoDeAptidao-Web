@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import classes.ConnectionFactory;
 
 
-@WebServlet("/AdicionarAluno")
+@WebServlet("/AdicionarProva")
 
-public class AdicionarAluno extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class AdicionarProva extends HttpServlet{
+private static final long serialVersionUID = 1L;
     
 	ConnectionFactory conexao = new ConnectionFactory();
 	Connection resp;
@@ -27,37 +27,31 @@ public class AdicionarAluno extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,curso,matricula;
-		nome = request.getParameter("txtNome");
-		curso = request.getParameter("txtCurso");
-		matricula = request.getParameter("txtMatricula");
+		String assunto,numero,matricula_professor,codigo_d;
+		assunto = request.getParameter("txtAssunto");
+		numero = request.getParameter("txtNumero");
+		matricula_professor = request.getParameter("txtMatricula_Professor");
+		codigo_d = request.getParameter("txtCodigo_D");
 		
-		//String mat = (String) request.getAttribute("matricula"); 
-		//int codigo_disciplina = Integer.parseInt(mat);	
+		
 		
 		try {
 			
 		resp = conexao.getConnection();
 		
 		if(resp != null) {
-			conexao.ExecutaSql("select * from aluno where matricula='"+matricula+"'");
+			conexao.ExecutaSql("select * from disciplina where numero='"+numero+"'");
 			
 			
 			if(!conexao.resultset.first()) {
-				PreparedStatement pst = resp.prepareStatement("insert into aluno (matricula,curso,nome) values(?,?,?)");
-				pst.setString(2,curso);
-				pst.setString(3,nome);
-				pst.setInt(1,Integer.parseInt(matricula));
-				
-				//PreparedStatement pst2 = resp.prepareStatement("insert into aluno_disciplina (codigo_a,codigo_d) values(?,?)");
-				
-		//		pst2.setInt(1,Integer.parseInt(matricula));
-			//	pst2.setInt(2,Integer.parseInt(codigo_disciplina));
-				
-
+				PreparedStatement pst = resp.prepareStatement("insert into disciplina (assunto,numero,matricula_professor,codigo_d) values(?,?,?,?)");
+				pst.setString(1,assunto);
+				pst.setInt(3,Integer.parseInt(numero));
+				pst.setInt(3,Integer.parseInt(matricula_professor));
+				pst.setInt(4,Integer.parseInt(codigo_d));
 				
 				pst.execute();
-				response.sendRedirect("dados_disciplina.jsp");
+				response.sendRedirect("opcoes_disciplina.jsp");
 			}else {
 				response.sendRedirect("falha_cadastro.jsp");
 			}
@@ -81,7 +75,7 @@ public class AdicionarAluno extends HttpServlet {
 	
 	
     
-    public AdicionarAluno() {
+    public AdicionarProva() {
         super();
         
     }
@@ -95,5 +89,4 @@ public class AdicionarAluno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

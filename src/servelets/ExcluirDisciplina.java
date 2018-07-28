@@ -61,7 +61,7 @@ public class ExcluirDisciplina extends HttpServlet {
 		
 		//out.println("<html>");
 		//out.println("<body>");
-		out.println("Primeira	servlet");
+		//out.println("Primeira	servlet");
 		//out.println("</body>");
 		//out.println("</html>");
 		}
