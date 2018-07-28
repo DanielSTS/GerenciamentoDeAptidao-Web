@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,6 +20,17 @@
 	 <a href="editar_disciplina.jsp" > EditarDisciplina</a>
 	 <a href="excluir_disciplina.jsp" >Excluir Disciplina</a>
 	 
+	 
+	 
+	
+	<form action="sobre_disciplina.jsp" method="post">  
+	<input type="text" name="cod" id="cod" /><br/><br/>  
+	<input type="submit" value="sobre disciplina"/>"  
+	</form>  
+
+	
+	
+	 
 	 <table border=1> 
 			<tr>
 				<td>Código</td>
@@ -38,24 +50,22 @@
 			conexao.ExecutaSql("select * from disciplina where matricula_professor='"+matricula+"'");
 			conexao.resultset.first();
 			
-
 			 do {
 			out.println("<tr>"); 
 			out.println("<td>"+ conexao.resultset.getInt("codigo")+"</td>");
 			out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
 		
 			
-			
-			out.println("<form action='sobre_disciplina.jsp' method='Post' >");	
-			out.println("<td><input type='submit' value ='Ir' name='btnIr' /></td>");
-			
-			out.println("</form>");
-			
 			out.println("</tr>");
 				} while(conexao.resultset.next());
 				}%>
 				</tr>
 		</table>
+		
+	
+		
+		
+		
 		<center>
 		<form action="home.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar" />

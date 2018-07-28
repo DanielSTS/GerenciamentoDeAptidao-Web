@@ -79,13 +79,7 @@ public class CadastrarProfessor extends HttpServlet {
 			
 		}
 		
-		//PrintWriter	out	=	response.getWriter();
-		
-		/*out.println("<html>");
-		out.println("<body>");
-		out.println("Primeira	servlet" );
-		out.println("</body>");
-		out.println("</html>");*/
+	
 	}
 	
        

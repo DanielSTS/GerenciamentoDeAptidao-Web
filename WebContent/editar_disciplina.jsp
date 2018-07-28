@@ -49,10 +49,7 @@
 		
 			
 			
-			out.println("<form action='dados_disciplina.jsp' method='Post' >");	
-			out.println("<td><input type='submit' value ='Ir' name='btnIr' /></td>");
 			
-			out.println("</form>");
 			
 			out.println("</tr>");
 				} while(conexao.resultset.next());

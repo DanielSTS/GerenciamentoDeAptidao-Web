@@ -11,6 +11,10 @@
 <%@	page import="classes.*,servelets.*,
 	java.sql.*,javax.*"%>
 
+<% String teste = request.getParameter("cod"); 
+int codigo_disciplina = Integer.parseInt(teste);
+
+ out.println(codigo_disciplina); %>
 
 
 	 <table border=1> 
@@ -21,21 +25,27 @@
 	
 				
 			</tr>
-			<% 
-			ConnectionFactory conexao = new ConnectionFactory();
-			Connection resp = conexao.getConnection();
-			conexao.ExecutaSql("select * from aluno order by nome" );
-			conexao.resultset.first();
-			
-			 do {
-			out.println("<tr>"); 
-			out.println("<td>"+ conexao.resultset.getInt("matricula")+"</td>");
-			out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
-			out.println("<td>"+ conexao.resultset.getString("curso")+"</td>");
-			
-			
-			out.println("</tr>");
-				} while(conexao.resultset.next());
+	<% 
+	ConnectionFactory conexao_teste = new ConnectionFactory();
+	conexao_teste.getConnection();
+	conexao_teste.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
+	
+	if(conexao_teste.resultset.first()){
+		ConnectionFactory conexao = new ConnectionFactory();
+		Connection resp = conexao.getConnection();
+		conexao.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
+		conexao.resultset.first();
+		
+		 do {
+		out.println("<tr>"); 
+		out.println("<td>"+ conexao.resultset.getInt("matricula")+"</td>");
+		out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
+		out.println("<td>"+ conexao.resultset.getString("curso")+"</td>");
+		
+		
+		out.println("</tr>");
+			} while(conexao.resultset.next());
+	 }
 				%>
 				</tr>
 		</table>
@@ -65,23 +75,30 @@
 				
 			</tr>
 			<% 
-			ConnectionFactory conexao_prova = new ConnectionFactory();
-			Connection resp_prova = conexao_prova.getConnection();
-			conexao_prova.ExecutaSql("select assunto,numero from prova order by numero" );
-			conexao_prova.resultset.first();
-			
-			 do {
-			out.println("<tr>"); 
-			
-			out.println("<td>"+ conexao_prova.resultset.getInt("numero")+"</td>");
-			out.println("<td>"+ conexao_prova.resultset.getString("assunto")+"</td>");
+			ConnectionFactory conexao_teste_prova = new ConnectionFactory();
+			conexao_teste_prova.getConnection();
+			conexao_teste_prova.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
 			
 			
-			
-			
-			out.println("</tr>");
-				} while(conexao_prova.resultset.next());
-				%>
+			if(conexao_teste.resultset.first()){
+
+				ConnectionFactory conexao_prova = new ConnectionFactory();
+				Connection resp_prova = conexao_prova.getConnection();
+				conexao_prova.ExecutaSql("select assunto,numero from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_prova.resultset.first();
+				
+				 do {
+				out.println("<tr>"); 
+				
+				out.println("<td>"+ conexao_prova.resultset.getInt("numero")+"</td>");
+				out.println("<td>"+ conexao_prova.resultset.getString("assunto")+"</td>");
+				
+				
+				
+				
+				out.println("</tr>");
+					} while(conexao_prova.resultset.next());
+			}%>
 				</tr>
 		</table>
 		
@@ -101,7 +118,7 @@
 	</form>
 		
 		<center>
-		<form action="home.jsp" method="Post" >	
+		<form action="opcoes_disciplina.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar"/>
 		</center>
 		</form>
