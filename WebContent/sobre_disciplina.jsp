@@ -161,7 +161,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 
 				ConnectionFactory conexao_aula = new ConnectionFactory();
 				Connection resp_aula = conexao_aula.getConnection();
-				conexao_aula.ExecutaSql("select numero,assunto,material from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_aula.ExecutaSql("select numero,assunto,material from aula where aula.codigo_d = '"+codigo_disciplina+"'");
 				conexao_aula.resultset.first();
 				
 				 do {
@@ -186,7 +186,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 			<div id="camposProva">
 				<h3>Número Aula: <input type="txt" name="txtNumeroA" id="txtNumeroA"/><br/><br/></h3>
 				<h3>Assunto: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
-				<h3>Material: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
+				<h3>Material: <input type="txt" name="txtMaterialA" id="txtMaterialA"/><br/><br/></h3>
 				
 			</div>		
 			

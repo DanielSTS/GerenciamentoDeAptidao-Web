@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.util.StringUtils;
+
 import classes.ConnectionFactory;
 
 
@@ -27,11 +29,17 @@ private static final long serialVersionUID = 1L;
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String assunto,numero,matricula_professor,codigo_d;
-		assunto = request.getParameter("txtAssunto");
-		numero = request.getParameter("txtNumero");
-		matricula_professor = request.getParameter("txtMatricula_Professor");
-		codigo_d = request.getParameter("txtCodigo_D");
+		String assunto,material;
+		
+		assunto = request.getParameter("txtAssuntoA");
+		material = request.getParameter("txtMaterialA");
+		
+		String num = (String) request.getParameter("txtNumeroA");
+		String codigo_d = (String)request.getSession().getAttribute("codigo");
+		int codigo_disciplina = Integer.parseInt(codigo_d);
+		int numero = 0 ;
+		
+		
 		
 		
 		
@@ -39,23 +47,26 @@ private static final long serialVersionUID = 1L;
 			
 		resp = conexao.getConnection();
 		
-		if(resp != null) {
-			conexao.ExecutaSql("select * from disciplina where numero='"+numero+"'");
+		if(resp != null && StringUtils.isStrictlyNumeric(num) ) {
+			 numero = Integer.parseInt(num);
+			 conexao.ExecutaSql("select * from aula where aula.numero = '"+numero+"'"+"and aula.codigo_d ='"+codigo_disciplina+"'");
 			
 			
 			if(!conexao.resultset.first()) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (assunto,numero,matricula_professor,codigo_d) values(?,?,?,?)");
-				pst.setString(1,assunto);
-				pst.setInt(3,Integer.parseInt(numero));
-				pst.setInt(3,Integer.parseInt(matricula_professor));
-				pst.setInt(4,Integer.parseInt(codigo_d));
 				
+				PreparedStatement pst = resp.prepareStatement("insert into aula (numero,assunto,material,codigo_d) values(?,?,?,?)");
+				pst.setInt(1,numero);
+				pst.setString(2,assunto);
+				pst.setString(3,material);
+				pst.setInt(4,codigo_disciplina);
 				pst.execute();
-				response.sendRedirect("opcoes_disciplina.jsp");
+				response.sendRedirect("sobre_disciplina.jsp");
 			}else {
-				response.sendRedirect("falha_cadastro.jsp");
+				response.sendRedirect("sobre_disciplina.jsp");
 			}
 			
+		}else {
+			response.sendRedirect("sobre_disciplina.jsp");
 		}
 			} catch (SQLException e) {
 				
@@ -63,14 +74,7 @@ private static final long serialVersionUID = 1L;
 			
 			
 		}
-		
-		PrintWriter	out	=	response.getWriter();
-		
-		//out.println("<html>");
-		//out.println("<body>");
-		//out.println("Primeira	servlet" +achaDisciplina);
-		//out.println("</body>");
-		//out.println("</html>");
+	
 	}
 	
 	
