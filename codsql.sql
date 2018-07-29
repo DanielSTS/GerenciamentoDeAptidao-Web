@@ -31,16 +31,20 @@ create table ProjetoBD.aula (numero integer,
 			foreign key(codigo_d) references ProjetoBD.disciplina(codigo) on delete cascade);
                         
 create table ProjetoBD.prova (assunto varchar(100),
-			numero integer primary key,
+			numero integer ,
 			material varchar(100),
 			codigo_d integer,
+            primary key(numero,codigo_d),
 			foreign key(codigo_d) references ProjetoBD.disciplina(codigo) on delete cascade);
                         
-create table ProjetoBD.prova_aluno (codigo_p integer,
+create table ProjetoBD.prova_aluno_disciplina (codigo_p integer,
 						codigo_a integer,
+                        codigo_d integer,
                         nota double precision,
+                        primary key (codigo_p,codigo_a,codigo_d),
                         foreign key (codigo_p) references ProjetoBD.prova(numero) on delete cascade,
-                        foreign key (codigo_a) references ProjetoBD.aluno(matricula) on delete cascade);
+                        foreign key (codigo_a) references ProjetoBD.aluno(matricula) on delete cascade,
+						foreign key (codigo_d) references ProjetoBD.disciplina(codigo) on delete cascade);
 		
 use ProjetoBD        
 select * from ProjetoBD.disciplina;

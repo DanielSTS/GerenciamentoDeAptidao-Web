@@ -91,6 +91,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 			<tr>
 				<td>Número</td>
 				<td>Assunto</td>
+				<td>Material</td>
 				
 	
 				
@@ -105,7 +106,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 
 				ConnectionFactory conexao_prova = new ConnectionFactory();
 				Connection resp_prova = conexao_prova.getConnection();
-				conexao_prova.ExecutaSql("select numero,assunto from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_prova.ExecutaSql("select numero,assunto,material from prova where prova.codigo_d = '"+codigo_disciplina+"'");
 				conexao_prova.resultset.first();
 				
 				 do {
@@ -113,6 +114,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 				
 				out.println("<td>"+ conexao_prova.resultset.getInt("numero")+"</td>");
 				out.println("<td>"+ conexao_prova.resultset.getString("assunto")+"</td>");
+				out.println("<td>"+ conexao_prova.resultset.getString("material")+"</td>");
 				
 				
 				
@@ -126,16 +128,17 @@ if(StringUtils.isStrictlyNumeric(teste)){
 		
 		<form	action="./AdicionarProva" method="Post">	
 		
-			<div id="camposProva">
-				<h3>Número Prova: <input type="txt" name="txtNumero" id="txtNumero"/><br/><br/></h3>
-				<h3>Assunto: <input type="txt" name="txtAssunto" id="txtAssunto"/><br/><br/></h3>
-				
-			</div>		
 			
-			<div id ="botoesProva">
+				<h3>Número Prova: <input type="txt" name="txtNumeroP" id="txtNumeroP"/><br/><br/></h3>
+				<h3>Assunto: <input type="txt" name="txtAssuntoP" id="txtAssuntoP"/><br/><br/></h3>
+				<h3>Material: <input type="txt" name="txtMaterialP" id="txtMaterialP"/><br/><br/></h3>
+				
+			
+			
+			
 				<input type="submit" value ="Salvar" name="btnSalvarProva"/>
 				
-			</div>	
+			
 		
 	</form>
 		
@@ -183,18 +186,17 @@ if(StringUtils.isStrictlyNumeric(teste)){
 		
 		<form	action="./AdicionarAula" method="Post">	
 		
-			<div id="camposProva">
+			
 				<h3>Número Aula: <input type="txt" name="txtNumeroA" id="txtNumeroA"/><br/><br/></h3>
 				<h3>Assunto: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
 				<h3>Material: <input type="txt" name="txtMaterialA" id="txtMaterialA"/><br/><br/></h3>
 				
-			</div>		
+
 			
-			<div id ="botoesProva">
+			
 				<input type="submit" value ="Salvar" name="btnSalvarProva"/>
 				
-			</div>	
-		
+			
 	</form>
 		
 		
