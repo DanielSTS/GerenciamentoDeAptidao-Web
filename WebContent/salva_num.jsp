@@ -10,10 +10,14 @@
 <%@	page import="classes.*,servelets.*,
 	java.sql.*,javax.*"%>
 	
-	<% session.setAttribute("codigo", request.getParameter("cod"));%>
-	<% response.sendRedirect("sobre_disciplina.jsp"); 
+	<% 
+	
+		session.setAttribute("numero", request.getParameter("txtNumeroP"));
+		response.sendRedirect("sobre_prova.jsp"); 
+	
+	
 	//out.println(session.getAttribute("codigo"));
-//	out.println(session.getAttribute("matricula"));
+	//out.println(session.getAttribute("matricula"));
 	//out.println(session.getAttribute("numero"));%>
 	
 	

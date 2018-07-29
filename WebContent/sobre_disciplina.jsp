@@ -141,6 +141,14 @@ if(StringUtils.isStrictlyNumeric(teste)){
 			
 		
 	</form>
+	
+	<form	action="salva_num.jsp" method="Post">	
+		
+			
+				<h3>Número Prova: <input type="txt" name="txtNumeroP" id="txtNumeroP"/><br/><br/></h3>
+				<input type="submit" value ="Adicionar Notas" name="btnSalvarProva"/>
+				<%  %>
+	</form>
 		
 		
 		
