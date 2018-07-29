@@ -12,7 +12,8 @@
 	
 	<% session.setAttribute("codigo", request.getParameter("cod"));%>
 	<% response.sendRedirect("sobre_disciplina.jsp"); 
-	//out.println(session.getAttribute("codigo"));%>
+	//out.println(session.getAttribute("codigo"));
+//	out.println(session.getAttribute("matricula"));%>
 	
 	
 </body>

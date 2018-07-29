@@ -13,11 +13,6 @@
 
 <% String mat = (String) session.getAttribute("matricula"); 
    int matricula = Integer.parseInt(mat);	
-%>	
-
-<% 
-
-
 
 String teste = (String) session.getAttribute("codigo");
 
@@ -82,19 +77,14 @@ if(StringUtils.isStrictlyNumeric(teste)){
 		
 		<form	action="./AdicionarAluno" method="Post">	
 		
-			<div id="campos">
+			
 				<h3>Nome: <input type="txt" name="txtNome" id="txtNome"/><br/><br/></h3>
 				<h3>Curso: <input type="txt" name="txtCurso" id="txtCurso"/><br/><br/></h3>
 				<h3>Matricula Aluno: <input type="txt" name="txtMatricula" id="txtMatricula"/><br/><br/></h3>
-				<input type="hidden" name="codig" value="<%out.println(codigo_disciplina); %>" id="codig" />
-			</div>		
 			
-			<div id ="botoes">
 				<input type="submit" value ="Salvar" name="btnSalvar"/><br/><br/>
 				
-			</div>	
-		
-	</form>
+		</form>
 	
 	
 	<table border=1> 

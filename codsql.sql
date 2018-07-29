@@ -31,9 +31,9 @@ create table ProjetoBD.aula (numero integer primary key,
                         
 create table ProjetoBD.prova (assunto varchar(100),
 			numero integer primary key,
-			matricula_professor integer,
-                        codigo_d integer,
-                        foreign key(codigo_d) references ProjetoBD.disciplina(codigo) on delete cascade);
+			material varchar(100),
+			codigo_d integer,
+			foreign key(codigo_d) references ProjetoBD.disciplina(codigo) on delete cascade);
                         
 create table ProjetoBD.prova_aluno (codigo_p integer,
 						codigo_a integer,
@@ -48,7 +48,7 @@ use ProjetoBD
 -- select * from ProjetoBD.prova;
 
 
--- select * from ProjetoBD.professor_disciplina
+select * from ProjetoBD.aluno_disciplina
 
 -- insert into ProjetoBD.aluno VALUES (13,'matematica','teste')
 

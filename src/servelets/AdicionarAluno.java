@@ -23,69 +23,87 @@ public class AdicionarAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	ConnectionFactory conexao = new ConnectionFactory();
-	ConnectionFactory conexao_teste = new ConnectionFactory();
+	
 	Connection resp;
 	
 	protected	void	service	(HttpServletRequest	request,
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,curso,mat;
+		String nome,curso;
 		nome = request.getParameter("txtNome");
 		curso = request.getParameter("txtCurso");
-		mat = request.getParameter("txtMatricula");
+		
 		
 		String codigo_d = (String)request.getSession().getAttribute("codigo");
+		String mat = (String) request.getParameter("txtMatricula");
 		
-		int matricula = Integer.parseInt(mat);
-		int codigo_disciplina = Integer.parseInt(codigo_d);
+		int matricula = 0, codigo_disciplina = 0;
 		
-		//int codigo_disciplina = Integer.parseInt(codigo_d);
-		
-		
-		try {
+		if(StringUtils.isStrictlyNumeric(mat)){
 			
-		resp = conexao.getConnection();
-		
-		if(resp != null ) {
+			 codigo_disciplina = Integer.parseInt(codigo_d);
+			 matricula = Integer.parseInt(mat);
+
+			 
+			 ConnectionFactory con = new ConnectionFactory();
+			 con.getConnection();
+			 con.ExecutaSql("select * from aluno_disciplina where aluno_disciplina.codigo_a = '"+matricula+"'"+"and aluno_disciplina.codigo_d ='"+codigo_disciplina+"'");
+
 			
+				try {
+					if(con.resultset.first()){
+
+					 	response.sendRedirect("sobre_disciplina.jsp");
+					 }else {
+						 ConnectionFactory conexao_teste = new ConnectionFactory();
+						 resp = conexao_teste.getConnection();
+
+						 conexao_teste.ExecutaSql("select * from aluno where aluno.matricula='"+matricula+"'");
+							
+						
+						if(!conexao_teste.resultset.first()) {
+						
+							PreparedStatement pst = resp.prepareStatement("insert into aluno (nome,curso,matricula) values(?,?,?)");
+							pst.setString(1,nome);
+							pst.setString(2,curso);
+							pst.setInt(3,matricula);
+							pst.execute();
+						}
+					
+						PreparedStatement pst2 = resp.prepareStatement("insert into aluno_disciplina (codigo_a,codigo_d) values(?,?)");
+						
+						pst2.setInt(1,matricula);
+						pst2.setInt(2,codigo_disciplina);
+						pst2.execute();
+						
+						response.sendRedirect("sobre_disciplina.jsp");
+							
+						}
+				} catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+					 
+					 
+					 
+					 
+				 
 			
-			conexao.ExecutaSql("select * from aluno_disciplina where aluno_disciplina.codigo_a='"+matricula+"'" );
-			//			conexao.ExecutaSql("select * from aluno_disciplina where aluno_disciplina.codigo_a='"+matricula+"'" +"and aluno_disciplina.codigo_d='"+codigo_disciplina+"'" );
-			
-			
-			
-			if(!conexao.resultset.first()){
-				
-				conexao_teste.ExecutaSql("select * from aluno where aluno.matricula='"+matricula+"'");
-				PreparedStatement pst = resp.prepareStatement("insert into aluno (matricula,curso,nome) values(?,?,?)");
-				
-				pst.setInt(1,matricula);
-				pst.setString(2,curso);
-				pst.setString(3,nome);
-				pst.execute();
-			}
-				
-				
-			PreparedStatement pst2 = resp.prepareStatement("insert into aluno_disciplina (codigo_a,codigo_d) values(?,?)");
-			
-			pst2.setInt(1,matricula);
-			pst2.setInt(2,codigo_disciplina);
-			pst2.execute();
-			
-			response.sendRedirect("sobre_disciplina.jsp");
-				
-		}else {
-			response.sendRedirect("falha_cadastro.jsp");
+		}else{
+				response.sendRedirect("sobre_disciplina.jsp");
 		}
+
+	
+		
+}		
 		
 		
-	}catch (SQLException e) {
-				
-				response.sendRedirect("falha_cadastro.jsp");
-				e.printStackTrace();
-			}
-		}	
+		
+		
+		
+	
+
 	
 	
     

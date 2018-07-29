@@ -30,20 +30,28 @@ public class EditarDisciplina extends HttpServlet {
 		String nome = request.getParameter("txtNome");
 		String codigo = request.getParameter("txtCod");
 		
+		String mat = (String)request.getSession().getAttribute("matricula");
+		int matricula = Integer.parseInt(mat);
 		
 		
+		 
 		
 		if(codigo != null && !nome.equals("") && StringUtils.isStrictlyNumeric(codigo)) {
 			try {
-			resp = conexao.getConnection();
+			
+			ConnectionFactory conexao_teste = new ConnectionFactory();
+			resp = conexao_teste.getConnection();
+			conexao_teste.ExecutaSql("select * from disciplina where disciplina.matricula_professor = '"+matricula+"'"+"and disciplina.codigo ='"+codigo+"'");
 
-			if(resp!= null) {
+			if(resp!= null && conexao_teste.resultset.first()) {
 				PreparedStatement pst;
 				pst = resp.prepareStatement("update disciplina  set codigo =?, nome =? where codigo=? ");
 				pst.setInt(1,Integer.parseInt(codigo));
 				pst.setString(2,nome);
 				pst.setInt(3,Integer.parseInt(codigo));
 				pst.execute();
+				response.sendRedirect("editar_disciplina.jsp");
+			}else {
 				response.sendRedirect("editar_disciplina.jsp");
 			}
 			

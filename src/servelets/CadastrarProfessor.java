@@ -16,9 +16,7 @@ import com.mysql.cj.util.StringUtils;
 
 import classes.ConnectionFactory;
 
-/**
- * Servlet implementation class CadastrarProfessor
- */
+
 @WebServlet("/CadastrarProfessor")
 public class CadastrarProfessor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
