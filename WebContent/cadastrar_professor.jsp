@@ -8,7 +8,7 @@
 </head>
 <body>
 		<form	action="./CadastrarProfessor" method="Post">	
-		<center>
+		
 			
 				<h3>Nome: <input type="txt" name="Nome" id="Nome"/></h3>
 				<h3>Matricula: <input type="txt" name="Matricula" id="Matricula"/></h3>
@@ -27,13 +27,14 @@
 				<input type="submit" value ="Salvar" name="btnSalvar"/>
 				
 			
-		</center>
+		
 	</form>
-	
+	<center>
 	<form action="index.jsp" method="Post" >	
 		<input type="submit" value ="Voltar" name="btnVoltar"/>
 		
 		</form>
+	</center>
 	</body>
 </html>
 

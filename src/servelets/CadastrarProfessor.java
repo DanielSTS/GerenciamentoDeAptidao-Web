@@ -49,16 +49,16 @@ public class CadastrarProfessor extends HttpServlet {
 			
 			if(!conexao.resultset.first()) {
 				PreparedStatement pst = resp.prepareStatement("insert into professor (matricula,email,datanascimento,nome,areadeformacao,titulacao,sexo,senha) values(?,?,?,?,?,?,?,?)");
-				pst.setString(4,nome);
-				pst.setString(2,email);
 				pst.setInt(1,Integer.parseInt(matricula));
+				pst.setString(2,email);
 				pst.setString(3,dataNascimento);
-				pst.setString(6,titulacao);
+				pst.setString(4,nome);
 				pst.setString(5,areadeformacao);
+				pst.setString(6,titulacao);
 				pst.setString(7,sexo);
 				pst.setString(8,senha);
 				pst.execute();
-				response.sendRedirect("login.jsp");
+				response.sendRedirect("login_teste.jsp");
 			}else {
 				
 				

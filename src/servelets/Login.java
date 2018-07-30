@@ -1,7 +1,6 @@
 package servelets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,11 +16,10 @@ import com.mysql.cj.util.StringUtils;
 import classes.ConnectionFactory;
 
 
-@WebServlet("/CadastraDisciplina")
-public class CadastraDisciplina extends HttpServlet {
-	
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+	
 	ConnectionFactory conexao = new ConnectionFactory();
 	Connection resp;
 	
@@ -29,64 +27,59 @@ public class CadastraDisciplina extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,codigo;
-		nome = request.getParameter("txtNome");
-		codigo = request.getParameter("txtCodigo");
 		
-		String matricula = (String)request.getSession().getAttribute("matricula");
+		String log = (String) request.getParameter("txtLog");
+		String senha = (String)request.getParameter("txtSenha");
 		
-	
-		
+		int matricula = 0;
 		
 		
 		try {
 			
 		resp = conexao.getConnection();
 		
-		if(resp != null && StringUtils.isStrictlyNumeric(codigo) ) {
-			conexao.ExecutaSql("select * from disciplina where codigo='"+codigo+"'");
+		if(resp != null && StringUtils.isStrictlyNumeric(log) ) {
+			 
+			 matricula = Integer.parseInt(log);
+			 
+			 conexao.ExecutaSql("select * from professor p where p.matricula = '"+matricula+"'"+"and p.senha ='"+senha+"'");
 			
 			
-			if(!conexao.resultset.first() ) {
-				PreparedStatement pst = resp.prepareStatement("insert into disciplina (codigo,nome,matricula_professor) values(?,?,?)");
-				pst.setInt(1,Integer.parseInt(codigo));
-				pst.setString(2,nome);
-				pst.setInt(3,Integer.parseInt(matricula));
-
+			if(conexao.resultset.first()) {
+				request.getSession().setAttribute("matricula", log);
+				response.sendRedirect("home.jsp");
 				
-				pst.execute();
-				response.sendRedirect("opcoes_disciplina.jsp");
 			}else {
-				response.sendRedirect("falha_disciplina.jsp");
+				response.sendRedirect("login_teste.jsp");
 			}
 			
 		}else {
-			response.sendRedirect("falha_disciplina.jsp");
+			response.sendRedirect("login_teste.jsp");
 		}
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
-				
+			
+			
 		}
-		
-		
 	
 	}
 	
 	
-    
-    public CadastraDisciplina() {
+	public Login() {
         super();
         
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

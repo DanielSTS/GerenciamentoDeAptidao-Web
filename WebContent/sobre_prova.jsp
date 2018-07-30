@@ -46,7 +46,7 @@ if(StringUtils.isStrictlyNumeric(numero)){
 
 		
 			
-		<form	action="./AdicionarNota" method="post">	
+		<form	action="./AdicionarNota" method="Post">	
 				
 				
 				<h3>Matricula Aluno: <input type="txt" name="txtMatriculaP" id="txtMatriculaP"/><br/><br/></h3>
@@ -66,32 +66,46 @@ if(StringUtils.isStrictlyNumeric(numero)){
 				
 			</tr>
 	<% 
-	ConnectionFactory conexao_teste = new ConnectionFactory();
-	conexao_teste.getConnection();
-	conexao_teste.ExecutaSql("select * from prova_aluno_disciplina  where prova_aluno_disciplina.codigo_a = '"+matricula_aluno+"'");
+	ConnectionFactory conexao = new ConnectionFactory();
+	conexao.getConnection();
+	conexao.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
+	
+	ResultSet teste  = conexao.resultset;
 	
 	
-	
-		ConnectionFactory conexao = new ConnectionFactory();
-		Connection resp = conexao.getConnection();
-		conexao.ExecutaSql("select al.matricula,al.nome,al.curso,pad.nota from aluno al, prova_aluno_disciplina pad ,disciplina di where pad.codigo_a = al.matricula and pad.codigo_d = '"+codigo_disciplina+"'");
+	if(teste.first()){
+		
+		conexao.getConnection();
+		conexao.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'order by a.matricula");
 		conexao.resultset.first();
+		ResultSet aux  = conexao.resultset;
+		
+		conexao.getConnection();
+		conexao.ExecutaSql("select pad.* from prova_aluno_disciplina pad where pad.codigo_d = '"+codigo_disciplina+"'"+" and pad.codigo_p = '"+numero_prova+"'order by pad.codigo_a ");
+		conexao.resultset.first();
+		ResultSet nota = conexao.resultset;
 		
 		 do {
-			 
-			 if(conexao_teste.resultset.first()){
 		out.println("<tr>"); 
-		out.println("<td>"+ conexao.resultset.getInt("matricula")+"</td>");
-		out.println("<td>"+ conexao.resultset.getString("nome")+"</td>");
-		out.println("<td>"+ conexao.resultset.getString("curso")+"</td>");
-		out.println("<td>"+ conexao.resultset.getDouble("nota")+"</td>");
+		out.println("<td>"+ aux.getInt("matricula")+"</td>");
+		out.println("<td>"+ aux.getString("nome")+"</td>");
+		int matricula_aux = aux.getInt("matricula");
+		out.println("<td>"+ aux.getString("curso")+"</td>");
 		
+		
+		if(nota.first() && nota.getInt("codigo_a") == matricula_aux){
+			out.println("<td>"+ conexao.resultset.getDouble("nota")+"</td>");
+			nota.next();
+
+		}else{
+			out.println("<td> </td>");
+			
+		}
 		
 		out.println("</tr>");
-			 }
-			} while(conexao.resultset.next());
-	
-			%>
+			} while(aux.next());
+	 }
+				%>
 				</tr>
 		</table>
 		

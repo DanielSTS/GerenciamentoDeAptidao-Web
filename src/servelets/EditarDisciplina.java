@@ -39,11 +39,11 @@ public class EditarDisciplina extends HttpServlet {
 		if(codigo != null && !nome.equals("") && StringUtils.isStrictlyNumeric(codigo)) {
 			try {
 			
-			ConnectionFactory conexao_teste = new ConnectionFactory();
-			resp = conexao_teste.getConnection();
-			conexao_teste.ExecutaSql("select * from disciplina where disciplina.matricula_professor = '"+matricula+"'"+"and disciplina.codigo ='"+codigo+"'");
+		
+			resp = conexao.getConnection();
+			conexao.ExecutaSql("select * from disciplina where disciplina.matricula_professor = '"+matricula+"'"+"and disciplina.codigo ='"+codigo+"'");
 
-			if(resp!= null && conexao_teste.resultset.first()) {
+			if(resp!= null && conexao.resultset.first()) {
 				PreparedStatement pst;
 				pst = resp.prepareStatement("update disciplina  set codigo =?, nome =? where codigo=? ");
 				pst.setInt(1,Integer.parseInt(codigo));

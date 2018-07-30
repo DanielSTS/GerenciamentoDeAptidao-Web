@@ -58,7 +58,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 	if(conexao_teste.resultset.first()){
 		ConnectionFactory conexao = new ConnectionFactory();
 		Connection resp = conexao.getConnection();
-		conexao.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'");
+		conexao.ExecutaSql("select a.* from aluno a , aluno_disciplina ad where a.matricula = ad.codigo_a and ad.codigo_d = '"+codigo_disciplina+"'order by a.matricula");
 		conexao.resultset.first();
 		
 		 do {
@@ -106,7 +106,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 
 				ConnectionFactory conexao_prova = new ConnectionFactory();
 				Connection resp_prova = conexao_prova.getConnection();
-				conexao_prova.ExecutaSql("select numero,assunto,material from prova where prova.codigo_d = '"+codigo_disciplina+"'");
+				conexao_prova.ExecutaSql("select numero,assunto,material from prova where prova.codigo_d = '"+codigo_disciplina+"'order by prova.numero");
 				conexao_prova.resultset.first();
 				
 				 do {
@@ -172,7 +172,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 
 				ConnectionFactory conexao_aula = new ConnectionFactory();
 				Connection resp_aula = conexao_aula.getConnection();
-				conexao_aula.ExecutaSql("select numero,assunto,material from aula where aula.codigo_d = '"+codigo_disciplina+"'");
+				conexao_aula.ExecutaSql("select numero,assunto,material from aula where aula.codigo_d = '"+codigo_disciplina+"'order by aula.numero");
 				conexao_aula.resultset.first();
 				
 				 do {

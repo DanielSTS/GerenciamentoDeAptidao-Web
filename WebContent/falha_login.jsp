@@ -8,7 +8,7 @@
 </head>
 <body>
 <center>
-	<h1> O cadastro falhou</h1>
+	<h1> Falha ao Cadastrar</h1>
 	 <a href="index.jsp" >Retornar a página principal</a>
 	 
 </center>

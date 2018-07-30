@@ -1,5 +1,5 @@
 create database ProjetoBD;
-
+use ProjetoBD
 create table ProjetoBD.professor (matricula integer primary key,
 			email varchar(100),
 			datanascimento varchar(100),
@@ -52,10 +52,28 @@ select * from ProjetoBD.disciplina;
 select * from ProjetoBD.aluno;
 -- select * from ProjetoBD.prova;
 
-
-select * from ProjetoBD.aluno_disciplina
+select al.matricula,al.nome,al.curso,pad.nota from ProjetoBD.aluno al, ProjetoBD.prova_aluno_disciplina pad ,ProjetoBD.disciplina di where pad.codigo_a = al.matricula and pad.codigo_d = di.codigo
+select * from ProjetoBD.prova_aluno_disciplina
+select * from ProjetoBD.prova_aluno_disciplina where ProjetoBD.prova_aluno_disciplina.codigo_p =  1 and ProjetoBD.prova_aluno_disciplina.codigo_d = 7  and ProjetoBD.prova_aluno_disciplina.codigo_a = 333
 
 select* from ProjetoBD.aula
+
+
+SELECT * from aluno
+
+SELECT a.nome,a.matricula,pad.nota
+FROM aluno a, aluno_disciplina ad, prova_aluno_disciplina pad
+where pad.codigo_p = 56 and ad.codigo_d = 7  and ad.codigo_a = a.matricula
+
+SELECT a.*,pad.nota FROM prova_aluno_disciplina pad
+OUTER JOIN aluno a on a.matricula = pad.codigo_a 
+OUTER JOIN  aluno_disciplina ad on ad.codigo_d = pad.codigo_d 
+
+select a.* from aluno a , aluno_disciplina ad
+where a.matricula = ad.codigo_a
+union all
+select pad.nota from prova_aluno_disciplina pad 
+where pad.codigo_d = 7 and pad.codigo_p = 56
 
 -- insert into ProjetoBD.aluno VALUES (13,'matematica','teste')
 
