@@ -49,9 +49,3 @@ create table ProjetoBD.prova_aluno_disciplina (codigo_p integer,
 		
 
 
-select p.numero, AVG(pad.nota) from prova_aluno_disciplina pad, disciplina d, prova p
-where pad.codigo_p = p.numero and pad.codigo_d = 345 group by p.numero
-
-select * from professor
-select * from aluno
-select * from prova_aluno_disciplina
