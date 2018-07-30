@@ -29,7 +29,7 @@ private static final long serialVersionUID = 1L;
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String assunto,material;
+String assunto,material;
 		
 		assunto = request.getParameter("txtAssuntoP");
 		material = request.getParameter("txtMaterialP");

@@ -77,7 +77,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 		
 		<form	action="./AdicionarAluno" method="Post">	
 		
-				<h2>Adicionar Aluno</h2>
+			
 				<h3>Nome: <input type="txt" name="txtNome" id="txtNome"/><br/><br/></h3>
 				<h3>Curso: <input type="txt" name="txtCurso" id="txtCurso"/><br/><br/></h3>
 				<h3>Matricula Aluno: <input type="txt" name="txtMatricula" id="txtMatricula"/><br/><br/></h3>
@@ -122,13 +122,13 @@ if(StringUtils.isStrictlyNumeric(teste)){
 				out.println("</tr>");
 					} while(conexao_prova.resultset.next());
 			}%>
-
+				</tr>
 		</table>
 		
 		
 		<form	action="./AdicionarProva" method="Post">	
 		
-				<h2>Adicionar Prova</h2>
+			
 				<h3>Número Prova: <input type="txt" name="txtNumeroP" id="txtNumeroP"/><br/><br/></h3>
 				<h3>Assunto: <input type="txt" name="txtAssuntoP" id="txtAssuntoP"/><br/><br/></h3>
 				<h3>Material: <input type="txt" name="txtMaterialP" id="txtMaterialP"/><br/><br/></h3>
@@ -144,7 +144,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
 	
 	<form	action="salva_num.jsp" method="Post">	
 		
-				<h2>Notas</h2>
+			
 				<h3>Número Prova: <input type="txt" name="txtNumeroP" id="txtNumeroP"/><br/><br/></h3>
 				<input type="submit" value ="Adicionar Notas" name="btnSalvarProva"/>
 				<%  %>
@@ -154,10 +154,13 @@ if(StringUtils.isStrictlyNumeric(teste)){
 		
 		<table border=1> 
 			<tr>
-				<td>Número</td>
+			<br><br><td>Número</td>
 				<td>Assunto</td>
 				<td>Material</td>
-					
+				
+				
+	
+				
 			</tr>
 			<% 
 			ConnectionFactory conexao_teste_aula = new ConnectionFactory();
@@ -185,13 +188,13 @@ if(StringUtils.isStrictlyNumeric(teste)){
 				out.println("</tr>");
 					} while(conexao_aula.resultset.next());
 			}%>
-				
+				</tr>
 		</table>
 		
 		
 		<form	action="./AdicionarAula" method="Post">	
 		
-				<h2>Registrar Aula</h2>
+			
 				<h3>Número Aula: <input type="txt" name="txtNumeroA" id="txtNumeroA"/><br/><br/></h3>
 				<h3>Assunto: <input type="txt" name="txtAssuntoA" id="txtAssuntoA"/><br/><br/></h3>
 				<h3>Material: <input type="txt" name="txtMaterialA" id="txtMaterialA"/><br/><br/></h3>
@@ -203,6 +206,17 @@ if(StringUtils.isStrictlyNumeric(teste)){
 				
 			
 	</form>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		<center>
 		<form action="opcoes_disciplina.jsp" method="Post" >	

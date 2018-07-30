@@ -46,8 +46,7 @@ public class AdicionarNota extends HttpServlet {
 				 matricula_aluno = Integer.parseInt(matricula);
 				 nota_aluno = Double.parseDouble(nota);
 
-				 conexao2.ExecutaSql("select * from prova_aluno_disciplina where prova_aluno_disciplina.codigo_p = '"+numero_prova+"'"
-				 +"and prova_aluno_disciplina.codigo_d ='"+codigo_disciplina+"and prova_aluno_disciplina.codigo_a ='"+matricula_aluno+"'");
+				 conexao2.ExecutaSql("select * from prova_aluno_disciplina where prova_aluno_disciplina.codigo_p = '"+numero_prova+"'"+"and prova_aluno_disciplina.codigo_d ='"+codigo_disciplina+"and prova_aluno_disciplina.codigo_a ='"+matricula_aluno+"'");
 				//conexao.ExecutaSql("select * from aluno");
 				
 				if(conexao2.resultset.first()) {
