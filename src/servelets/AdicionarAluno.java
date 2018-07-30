@@ -30,9 +30,10 @@ public class AdicionarAluno extends HttpServlet {
 					HttpServletResponse	response)
 					throws	ServletException,	IOException	{
 		
-		String nome,curso;
+		String nome,curso,sexo;
 		nome = request.getParameter("txtNome");
 		curso = request.getParameter("txtCurso");
+		sexo = request.getParameter("sexo");
 		
 		
 		String codigo_d = (String)request.getSession().getAttribute("codigo");
@@ -43,6 +44,7 @@ public class AdicionarAluno extends HttpServlet {
 		if(StringUtils.isStrictlyNumeric(mat)){
 			
 			 codigo_disciplina = Integer.parseInt(codigo_d);
+			
 			 matricula = Integer.parseInt(mat);
 
 			 
@@ -64,10 +66,11 @@ public class AdicionarAluno extends HttpServlet {
 						
 						if(!conexao_teste.resultset.first()) {
 						
-							PreparedStatement pst = resp.prepareStatement("insert into aluno (nome,curso,matricula) values(?,?,?)");
+							PreparedStatement pst = resp.prepareStatement("insert into aluno (nome,curso,matricula,sexo) values(?,?,?,?)");
 							pst.setString(1,nome);
 							pst.setString(2,curso);
 							pst.setInt(3,matricula);
+							pst.setString(4,sexo);
 							pst.execute();
 						}
 					

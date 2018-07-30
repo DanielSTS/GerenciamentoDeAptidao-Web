@@ -38,7 +38,7 @@ if(StringUtils.isStrictlyNumeric(teste)){
  %>
  
  
- 
+  <a href="desempenho_turma.jsp" >Desempenho da Turma</a><br/><br/>
  
 
 
@@ -80,9 +80,11 @@ if(StringUtils.isStrictlyNumeric(teste)){
 			
 				<h3>Nome: <input type="txt" name="txtNome" id="txtNome"/><br/><br/></h3>
 				<h3>Curso: <input type="txt" name="txtCurso" id="txtCurso"/><br/><br/></h3>
-				<h3>Matricula Aluno: <input type="txt" name="txtMatricula" id="txtMatricula"/><br/><br/></h3>
+				<h3>Matricula Aluno: <input type="txt" name="txtMatricula" id="txtMatricula"/></h3>
+				<input type="radio" name="sexo" id="sexo" value="masculino" checked> Masculino<br>
+  				<input type="radio" name="sexo" id="sexo" value="feminino"> Feminino<br>
 			
-				<input type="submit" value ="Salvar" name="btnSalvar"/><br/><br/>
+				<br/><input type="submit" value ="Salvar" name="btnSalvar"/><br/><br/>
 				
 		</form>
 	

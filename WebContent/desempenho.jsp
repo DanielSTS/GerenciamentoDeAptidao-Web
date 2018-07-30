@@ -5,30 +5,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-
-
 </head>
 <body>
 
+<body>
 
-<form action="./Login" method="post">
-		<h1>Login</h1>
-			
-			Matrícula: <input type="text" name="txtLog" value="" id="txtLog"/><br/><br/>
-					
-			Senha: <input type="password" name="txtSenha" value="" id="txtSenha"/><br/><br/>
 
-			<input type="submit" value="Entrar"/>
+<%@	page import="classes.*,servelets.*,
+	java.sql.*,com.mysql.cj.util.StringUtils"%>
+	
 
+
+
+
+
+
+	
 </form>
 
-<center>
-<form action="index.jsp" method="Post" >	
-		<input type="submit" value ="Voltar" name="btnVoltar"/>
+<form	action="./desempenho_turma.jsp" method="Post">	
 		
-</form>			
-</center>			
-	
+			<br/><br/><input type="submit" value ="Desempenho da turma" name="btnOK"/><br/><br/>
+				
+</form>
+
+
+
+
+
+
+
+<center>
+		<form action="sobre_disciplina.jsp" method="Post" >	
+		<input type="submit" value ="Voltar" name="btnVoltar"/>
+		</center>
+		</form>
+
+
+
 </body>
 </html>

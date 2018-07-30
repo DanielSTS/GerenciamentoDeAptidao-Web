@@ -17,7 +17,9 @@
 				<h3>data de nascimento: <input type="txt" name="DataDeNascimento" id="DataDeNascimento"/></h3>
 				<h3>Titulação: <input type="txt" name="Titulacao" id="Titulacao"/></h3>
 				<h3>Area de Formação: <input type="txt" name="AreaDeFormacao" id="AreaDeFormacao"/></h3>
-				<h3>sexo: <input type="txt" name="Sexo" id="Sexo"/></h3>
+				<h3>Sexo: </h3>
+				<input type="radio" name="Sexo" id="Sexo" value="masculino" checked> Masculino<br>
+  				<input type="radio" name="Sexo" id="Sexo" value="feminino"> Feminino<br>
 				
 				<h3>senha: <input type="password" name="Senha" id="Senha"/></h3>
 								
